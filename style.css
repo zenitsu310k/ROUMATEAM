@@ -32,6 +32,16 @@ padding: 30px;
 border-bottom: 1px solid #222;
 }
 
+/* ===== SYSTÈME DE PAGES ===== */
+.page {
+display: none;
+}
+
+.page.active {
+display: block;
+}
+
+/* ===== ROUE ===== */
 .container {
 display: flex;
 justify-content: center;
@@ -78,12 +88,14 @@ font-size: 20px;
 color: #00ffea;
 }
 
+/* ===== CHRONO ===== */
 .timer {
 font-size: 40px;
 margin: 10px;
 color: #00ffea;
 }
 
+/* ===== SCORES ===== */
 .scoreboard {
 display: flex;
 justify-content: center;
@@ -96,14 +108,3 @@ padding: 20px;
 border: 2px solid #ff0099;
 border-radius: 10px;
 }
-
-.page {
-display: none;
-}
-
-.page.active {
-display: block;
-}
-
-
-
