@@ -174,8 +174,8 @@ function spinWheel() {
 if (items.length === 0) return;
 
 indexGagnant = -1;
-vitesse = Math.random() * 0.5 + 0.4;
-let ralentissement = 0.995;
+vitesse = Math.random() * 0.35 + 0.25; // vitesse de départ plus basse
+let ralentissement = 0.997; // ralentit plus vite
 
 // Lancer le son
 sonRoue.currentTime = 0;
@@ -186,7 +186,7 @@ angle += vitesse;
 vitesse *= ralentissement;
 dessinerRoue();
 
-if (vitesse < 0.002) {
+if (vitesse < 0.004) {
 clearInterval(interval);
 
 // Arrêter le son
@@ -326,3 +326,4 @@ document.getElementById("score2").textContent = 0;
 
 // Dessiner la roue au chargement
 dessinerRoue();
+
