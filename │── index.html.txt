@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>ROUMATEAM</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🎮 Gaming Tournament</h1>
+
+<nav>
+<a href="#roue">Roue de hasard</a> |
+<a href="#tournoi">Tournoi</a>
+</nav>
+
+<hr>
+
+<h2 id="roue">🎡 Roue de hasard</h2>
+
+<div class="container">
+<canvas id="wheel" width="400" height="400"></canvas>
+</div>
+
+<input type="text" id="inputItem" placeholder="Pseudo ou map">
+<button onclick="ajouterItem()">Ajouter</button>
+<button onclick="spinWheel()">🎯 Lancer la roue</button>
+
+<h3>Résultat :</h3>
+<p id="resultat">---</p>
+
+<ul id="liste"></ul>
+
+<hr>
+
+<h2 id="tournoi">🏆 Inscription tournoi</h2>
+
+<input type="text" id="pseudoTournoi" placeholder="Ton pseudo">
+<button onclick="inscrireTournoi()">S'inscrire</button>
+
+<h3>Joueurs inscrits :</h3>
+<ul id="inscrits"></ul>
+
+<h3>Créer des équipes</h3>
+<select id="mode">
+<option value="1">1v1</option>
+<option value="2">2v2</option>
+<option value="3">3v3</option>
+<option value="4">4v4</option>
+<option value="5">5v5</option>
+</select>
+
+<button onclick="creerEquipes()">Créer équipes aléatoires</button>
+
+<h3>Équipes :</h3>
+<div id="equipes"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
