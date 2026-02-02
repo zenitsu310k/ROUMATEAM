@@ -225,3 +225,17 @@ document.getElementById("score2").textContent = 0;
 }
 
 dessinerRoue();
+function afficherPage(idPage) {
+// Cacher toutes les pages
+document.querySelectorAll(".page").forEach(page => {
+page.classList.remove("active");
+});
+
+// Afficher uniquement la page demandée
+document.getElementById(idPage).classList.add("active");
+}
+
+// Afficher l'accueil par défaut au chargement
+afficherPage("accueil");
+
+
