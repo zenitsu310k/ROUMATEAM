@@ -17,8 +17,16 @@
 <hr>
 
 <h2 id="roue">🎡 Roue de hasard</h2>
+  <div class="container">
+<div id="fleche">⬇️</div>
+<canvas id="wheel" width="400" height="400"></canvas>
+</div>
 
-<div class="container">
+<p id="compteurRoue" class="compteur">Éléments dans la roue : 0</p>
+
+<button onclick="resetRoue()">🔄 Réinitialiser la roue</button>
+
+  <div class="container">
 <canvas id="wheel" width="400" height="400"></canvas>
 </div>
 
@@ -58,3 +66,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
