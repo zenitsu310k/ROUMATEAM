@@ -96,3 +96,12 @@ padding: 20px;
 border: 2px solid #ff0099;
 border-radius: 10px;
 }
+.page {
+display: none;
+}
+
+.page.active {
+display: block;
+}
+
+
