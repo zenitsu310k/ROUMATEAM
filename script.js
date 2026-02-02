@@ -1,3 +1,15 @@
+// ================== NAVIGATION DES PAGES ==================
+function afficherPage(idPage) {
+document.querySelectorAll(".page").forEach(page => {
+page.classList.remove("active");
+});
+document.getElementById(idPage).classList.add("active");
+}
+
+// Afficher l'accueil par défaut
+afficherPage("accueil");
+
+// ================== ROUE ==================
 let items = [];
 let joueurs = [];
 
@@ -6,8 +18,6 @@ const ctx = canvas.getContext("2d");
 
 let angle = 0;
 let vitesse = 0;
-
-// ---- ROUE ----
 
 function dessinerRoue() {
 let total = items.length;
@@ -115,7 +125,7 @@ function pleinEcran() {
 canvas.requestFullscreen();
 }
 
-// ---- TOURNOI ----
+// ================== TOURNOI ==================
 
 function inscrireTournoi() {
 let pseudo = document.getElementById("pseudoTournoi").value;
@@ -177,7 +187,7 @@ equipeNum++;
 }
 }
 
-// ---- CHRONO ----
+// ================== CHRONO ==================
 let timer;
 let secondes = 0;
 
@@ -203,7 +213,7 @@ document.getElementById("minutes").textContent = "00";
 document.getElementById("secondes").textContent = "00";
 }
 
-// ---- SCORES ----
+// ================== SCORES ==================
 let score1 = 0;
 let score2 = 0;
 
@@ -225,19 +235,6 @@ document.getElementById("score2").textContent = 0;
 }
 
 dessinerRoue();
-
-function afficherPage(idPage) {
-// Cacher toutes les pages
-document.querySelectorAll(".page").forEach(page => {
-page.classList.remove("active");
-});
-
-// Afficher uniquement la page demandée
-document.getElementById(idPage).classList.add("active");
-}
-
-// Afficher l'accueil par défaut au chargement
-afficherPage("accueil");
 
 
 
