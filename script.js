@@ -3,17 +3,26 @@ let joueurs = [];
 
 const canvas = document.getElementById("wheel");
 const ctx = canvas.getContext("2d");
-let angle = 0;
-let spinning = false;
 
-// ---------- ROUE DE HASARD ----------
+let angle = 0;
+let vitesse = 0;
+let enRotation = false;
+
+// Son de la roue
+const sonRoue = new Audio("https://www.soundjay.com/button/sounds/button-3.mp3");
+
+// ---------- ROUE ----------
 
 function dessinerRoue() {
 let total = items.length;
-if (total === 0) {
+
 ctx.clearRect(0, 0, 400, 400);
+
+if (total === 0) {
 ctx.fillStyle = "white";
-ctx.fillText("Ajoute des noms", 150, 200);
+ctx.font = "16px Arial";
+ctx.textAlign = "center";
+ctx.fillText("Ajoute des noms pour voir la roue", 200, 200);
 return;
 }
 
@@ -31,11 +40,21 @@ ctx.save();
 ctx.translate(200, 200);
 ctx.rotate(angle + i * arc + arc / 2);
 ctx.fillStyle = "white";
-ctx.fillText(items[i], 100, 0);
+ctx.font = "14px Arial";
+ctx.textAlign = "right";
+ctx.fillText(items[i], 170, 5);
 ctx.restore();
 }
+
+mettreAJourCompteur();
 }
 
+function mettreAJourCompteur() {
+document.getElementById("compteurRoue").textContent =
+"Éléments dans la roue : " + items.length;
+}
+
+// Ajouter un élément
 function ajouterItem() {
 let valeur = document.getElementById("inputItem").value;
 if (valeur !== "") {
@@ -46,39 +65,75 @@ dessinerRoue();
 }
 }
 
+// Supprimer un élément
+function supprimerItem(index) {
+items.splice(index, 1);
+afficherListe();
+dessinerRoue();
+}
+
+// Afficher liste avec boutons supprimer
 function afficherListe() {
 let liste = document.getElementById("liste");
 liste.innerHTML = "";
-items.forEach(item => {
+
+items.forEach((item, index) => {
 let li = document.createElement("li");
-li.textContent = item;
+li.textContent = item + " ";
+
+let btn = document.createElement("button");
+btn.textContent = "❌";
+btn.onclick = () => supprimerItem(index);
+
+li.appendChild(btn);
 liste.appendChild(li);
 });
 }
 
+// Réinitialiser la roue
+function resetRoue() {
+items = [];
+afficherListe();
+dessinerRoue();
+document.getElementById("resultat").textContent = "---";
+}
+
+// Lancer la roue (plus fluide)
 function spinWheel() {
 if (items.length === 0) {
 document.getElementById("resultat").textContent = "Ajoute des noms !";
 return;
 }
 
-spinning = true;
-let rotations = 0;
+enRotation = true;
+vitesse = Math.random() * 0.3 + 0.2;
+sonRoue.play();
+
+let ralentissement = 0.995;
+
 let interval = setInterval(() => {
-angle += 0.2;
+angle += vitesse;
+vitesse *= ralentissement;
 dessinerRoue();
-rotations++;
 
-if (rotations > 60) {
+if (vitesse < 0.002) {
 clearInterval(interval);
-spinning = false;
-let index = Math.floor((items.length - (angle / (2 * Math.PI)) * items.length) % items.length);
-document.getElementById("resultat").textContent = "🎯 Choisi : " + items[index];
+enRotation = false;
+sonRoue.pause();
+
+let total = items.length;
+let arc = (2 * Math.PI) / total;
+let index = Math.floor(
+(total - (angle % (2 * Math.PI)) / arc) % total
+);
+
+document.getElementById("resultat").textContent =
+"🎯 Choisi : " + items[index];
 }
-}, 50);
+}, 30);
 }
 
-// ---------- TOURNOI ----------
+// ---------- TOURNOI AMÉLIORÉ ----------
 
 function inscrireTournoi() {
 let pseudo = document.getElementById("pseudoTournoi").value;
@@ -87,6 +142,7 @@ if (pseudo !== "") {
 joueurs.push(pseudo);
 afficherInscrits();
 document.getElementById("pseudoTournoi").value = "";
+mettreAJourCompteurTournoi();
 }
 }
 
@@ -94,11 +150,28 @@ function afficherInscrits() {
 let liste = document.getElementById("inscrits");
 liste.innerHTML = "";
 
-joueurs.forEach(joueur => {
+joueurs.forEach((joueur, index) => {
 let li = document.createElement("li");
-li.textContent = joueur;
+li.textContent = joueur + " ";
+
+let btn = document.createElement("button");
+btn.textContent = "❌";
+btn.onclick = () => supprimerJoueur(index);
+
+li.appendChild(btn);
 liste.appendChild(li);
 });
+}
+
+function supprimerJoueur(index) {
+joueurs.splice(index, 1);
+afficherInscrits();
+mettreAJourCompteurTournoi();
+}
+
+function mettreAJourCompteurTournoi() {
+document.getElementById("compteurTournoi").textContent =
+"Joueurs inscrits : " + joueurs.length;
 }
 
 function melanger(array) {
@@ -127,4 +200,6 @@ equipesDiv.appendChild(p);
 equipeNum++;
 }
 }
+
+// Dessiner la roue au chargement
 dessinerRoue();
