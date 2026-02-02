@@ -1,0 +1,43 @@
+body {
+font-family: Arial, sans-serif;
+background-color: #0b0f1a;
+color: white;
+text-align: center;
+}
+
+h1 {
+color: #ff0099;
+text-shadow: 0 0 10px #ff0099;
+}
+
+button {
+background-color: #ff0099;
+color: white;
+border: none;
+padding: 10px;
+margin: 5px;
+cursor: pointer;
+border-radius: 5px;
+}
+
+input, select {
+padding: 8px;
+}
+
+.container {
+display: flex;
+justify-content: center;
+}
+
+canvas {
+border: 3px solid #ff0099;
+border-radius: 50%;
+}
+
+ul {
+list-style: none;
+}
+
+#equipes {
+margin-top: 20px;
+}
