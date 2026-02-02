@@ -127,3 +127,4 @@ equipesDiv.appendChild(p);
 equipeNum++;
 }
 }
+dessinerRoue();
