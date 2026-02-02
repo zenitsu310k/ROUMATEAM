@@ -7,46 +7,60 @@
 </head>
 <body>
 
-<h1>🎮 c'est la ROUUUMANOOOO</h1>
+<header>
+<h1>🎮 ROUMATEAM</h1>
+<p class="slogan">La roue qui décide du game</p>
 
 <nav>
-<a href="#roue">Roue de hasard</a> |
+<a href="#accueil">Accueil</a>
+<a href="#roue">Roue</a>
 <a href="#tournoi">Tournoi</a>
+<a href="#scores">Scores</a>
 </nav>
+</header>
 
-<hr>
+<!-- ACCUEIL -->
+<section id="accueil">
+<h2>🏠 Accueil</h2>
+<p>Bienvenue sur <b>ROUMATEAM</b>, l’outil ultime pour organiser tes tournois et tirages au sort gaming.</p>
+</section>
 
-<h2 id="roue">🎡 Roue de hasard</h2>
-  
+<!-- ROUE -->
+<section id="roue">
+<h2>🎡 Roue du hasard</h2>
+
 <div class="container">
 <div id="fleche">⬇️</div>
-<canvas id="wheel" width="400" height="400"></canvas>
+<canvas id="wheel" width="450" height="450"></canvas>
 </div>
-  
+
 <p id="compteurRoue" class="compteur">Éléments dans la roue : 0</p>
 
-<button onclick="resetRoue()">🔄 Réinitialiser la roue</button>
-
-
-  
+<div class="inputs">
 <input type="text" id="inputItem" placeholder="Pseudo ou map">
-<button onclick="ajouterItem()">Ajouter</button>
-<button onclick="spinWheel()">🎯 Lancer la roue</button>
+<button onclick="ajouterItem()">➕ Ajouter</button>
+<button onclick="spinWheel()">🎯 Lancer</button>
+<button onclick="resetRoue()">🔄 Réinitialiser</button>
+<button onclick="pleinEcran()">🖥️ Mode Stream</button>
+</div>
 
 <h3>Résultat :</h3>
-<p id="resultat">---</p>
+<p id="resultat" class="resultat">---</p>
 
 <ul id="liste"></ul>
+</section>
 
-<hr>
+<!-- TOURNOI -->
+<section id="tournoi">
+<h2>🏆 Tournoi</h2>
 
-<h2 id="ROUMACUP">🏆 Inscription ROUMACUP</h2>
-
-<input type="text" id="pseudoTournoi" placeholder="Ton pseudo">
+<div class="inputs">
+<input type="text" id="pseudoTournoi" placeholder="Pseudo du joueur">
 <button onclick="inscrireTournoi()">S'inscrire</button>
+</div>
 
-<h3>Joueurs inscrits :</h3>
-  <p id="compteurTournoi" class="compteur">Joueurs inscrits : 0</p>
+<p id="compteurTournoi" class="compteur">Joueurs inscrits : 0</p>
+
 <ul id="inscrits"></ul>
 
 <h3>Créer des équipes</h3>
@@ -54,18 +68,52 @@
 <option value="1">1v1</option>
 <option value="2">2v2</option>
 <option value="3">3v3</option>
-<option value="4">4v4</option>
-<option value="5">5v5</option>
 </select>
 
 <button onclick="creerEquipes()">Créer équipes aléatoires</button>
 
-<h3>Équipes :</h3>
 <div id="equipes"></div>
+</section>
+
+<!-- CHRONO -->
+<section id="chrono">
+<h2>⏱️ Chronomètre de match</h2>
+
+<div class="timer">
+<span id="minutes">00</span>:<span id="secondes">00</span>
+</div>
+
+<button onclick="startTimer()">▶️ Démarrer</button>
+<button onclick="stopTimer()">⏸️ Pause</button>
+<button onclick="resetTimer()">🔁 Réinitialiser</button>
+</section>
+
+<!-- SCORES -->
+<section id="scores">
+<h2>📊 Tableau de scores</h2>
+
+<div class="scoreboard">
+<div>
+<h3>Équipe 1</h3>
+<p id="score1">0</p>
+<button onclick="ajouterPoint(1)">+1</button>
+</div>
+
+<div>
+<h3>Équipe 2</h3>
+<p id="score2">0</p>
+<button onclick="ajouterPoint(2)">+1</button>
+</div>
+</div>
+
+<button onclick="resetScores()">🔄 Reset scores</button>
+</section>
 
 <script src="script.js"></script>
 </body>
 </html>
+
+
 
 
 
