@@ -20,6 +20,10 @@ cursor: pointer;
 border-radius: 5px;
 }
 
+button:hover {
+background-color: #ff33aa;
+}
+
 input, select {
 padding: 8px;
 }
@@ -27,11 +31,21 @@ padding: 8px;
 .container {
 display: flex;
 justify-content: center;
+position: relative;
 }
 
 canvas {
 border: 3px solid #ff0099;
 border-radius: 50%;
+}
+
+/* Flèche fixe au-dessus de la roue */
+#fleche {
+position: absolute;
+top: -10px;
+left: 50%;
+transform: translateX(-50%);
+font-size: 30px;
 }
 
 ul {
@@ -40,4 +54,9 @@ list-style: none;
 
 #equipes {
 margin-top: 20px;
+}
+
+.compteur {
+color: #ffcc00;
+margin-top: 5px;
 }
